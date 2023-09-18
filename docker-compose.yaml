@@ -25,6 +25,9 @@ services:
     depends_on:
       - database
     tty: true
+    entrypoint: dockerize -wait tcp://database:3306 -timeout 30s node src/index.js
+    volumes:
+      - .:/usr/src/app
     networks:
       - nodenet
 
